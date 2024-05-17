@@ -1,6 +1,15 @@
-:root {
+body {
+    background-color: #3B2A9F;
 }
 
-* {
-  box-sizing: border-box;
+#radio {
+    background-color: coral;
+}
+
+#b {
+    width: 252px;
+    height: 64px;
+    border: 3px solid #FFFFFF;
+    border-radius: 16px;
+    font-size: 36px;
 }
