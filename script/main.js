@@ -1,16 +1,19 @@
 var user = 0;
 var ai = 0;
 
+set();
+
 function set() {
-    let u = document.getElementById("playerScore");
-    let a = document.getElementById("aiPlyer");
+    let u = document.getElementById("pScore");
+    let a = document.getElementById("aiScore");
 
     u.innerHTML = user;
     a.innerHTML = ai;
 }
 
-function click() {
-    let u = document.querySelector('input[name="run"]:checked').value;
+function check() {
+    let o = document.querySelector('input[name="run"]:checked').value;
+    console.log(u);
     const choises = ["paper", "scisssors", "rock"];
     let a = choises[Math, floor(Math.random() * choises.length)];
 
@@ -23,12 +26,12 @@ function click() {
         c.innerHTML = "Rock"
     }
 
-    if (u == a) {
+    if (o == a) {
         r = 0;
     } else if (
-        (u == 0 && a == 2) ||
-        (u == 1 && a == 0) ||
-        (u == 2 && a == 1)) {
+        (o == 0 && a == 2) ||
+        (o == 1 && a == 0) ||
+        (o == 2 && a == 1)) {
         user;
         r(1);
     } else {
