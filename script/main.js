@@ -1,31 +1,41 @@
 var user = 0;
 var ai = 0;
+var player1 = 0;
+var player2 = 0;
 
+let q = document.getElementById("single");
+let w = document.getElementById("multiple");
 
-function set() {
-    let u = document.getElementById("pScore");
-    let a = document.getElementById("aiScore");
+w.style.display = "none";
 
+var x = 0;
 
-    u.innerHTML = user;
-    a.innerHTML = ai;
+function change() {
+    let a = document.getElementById("b2");
+    if (x % 2 == 0) {
+        q.style.display = "none";
+        w.style.display = "block";
+        a.innerHTML = "Single";
+    } else {
+        q.style.display = "block";
+        w.style.display = "none";
+        a.innerHTML = "Multiple";
+    }
+    x++;
+    player1 = 0;
+    player2 = 0;
+    user = 0;
+    ai = 0;
 }
 
 function check() {
+    let b = document.getElementById("b");
+    b.innerHTML = "Play Again!";
     let u = document.querySelector('input[name="run"]:checked').value;
     console.log(u);
     const choises = ["Paper", "Scissors", "Rock"];
     let a = choises[Math.floor(Math.random() * choises.length)];
     console.log(a);
-
-    // let c = document.getElementById("comp");
-    // if (a == 0) {
-    //     c.innerHTML = "Paper";
-    // } else if (a == 1) {
-    //     c.innerHTML = "Scissors";
-    // } else {
-    //     c.innerHTML = "Rock"
-    // }
 
     if (u == a) {
         r(0, a);
@@ -61,4 +71,40 @@ function r(s, u) {
     e.innerHTML = u;
 }
 
-set();
+function check_multiple() {
+    let b = document.getElementById("b1");
+    b.innerHTML = "Play Again!";
+    let u = document.querySelector('input[name="run1"]:checked').value;
+    console.log(u);
+
+    let o = document.querySelector('input[name="run2"]:checked').value;
+    console.log(o);
+
+    if (u == o) {
+        r1(0)
+    } else if (
+        (u == "Paper" && o == "Scissors") ||
+        (u == "Scissors" && o == "Rock") ||
+        (u == "Rock" && o == "Paper")) {
+        player1++;
+        r1(1);
+    } else {
+        player2++;
+        r1(-1);
+    }
+}
+
+function r1(a) {
+    let t = document.getElementById("one1");
+    let y = document.getElementById("player1");
+    let x = document.getElementById("player2");
+    if (a == -1) {
+        t.innerHTML = "Player2 Won!";
+    } else if (a == 1) {
+        t.innerHTML = "Player1 Won!";
+    } else {
+        t.innerHTML = "DRAW!";
+    }
+    y.innerHTML = player1;
+    x.innerHTML = player2;
+}

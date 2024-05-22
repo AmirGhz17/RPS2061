@@ -13,3 +13,27 @@ body {
     border-radius: 16px;
     font-size: 36px;
 }
+
+#b1 {
+    width: 252px;
+    height: 64px;
+    border: 3px solid #FFFFFF;
+    border-radius: 16px;
+    font-size: 36px;
+}
+
+#b2 {
+    width: 252px;
+    height: 64px;
+    border: 3px solid #FFFFFF;
+    border-radius: 16px;
+    font-size: 36px;
+}
+
+#div1 {
+    background-color: #5e51a8;
+}
+
+#div2 {
+    background-color: #6f3368;
+}
