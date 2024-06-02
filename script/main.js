@@ -1,110 +1,194 @@
-var user = 0;
-var ai = 0;
-var player1 = 0;
-var player2 = 0;
+var intro = true;
+var single = false;
+var multiple = false;
+var back = false;
 
-let q = document.getElementById("single");
-let w = document.getElementById("multiple");
+let Intro = document.getElementById("Intro");
+let Single = document.getElementById("Single");
+let Multiple = document.getElementById("Multiple");
+let Back = document.getElementById("Back");
 
-w.style.display = "none";
+Single.style.display = "none";
+Multiple.style.display = "none";
+Back.style.display = "none";
 
-var x = 0;
+var pScore = 0;
+var aiScore = 0;
+var player1Score = 0;
+var player2Score = 0;
 
-function change() {
-    let a = document.getElementById("b2");
-    if (x % 2 == 0) {
-        q.style.display = "none";
-        w.style.display = "block";
-        a.innerHTML = "Single";
-    } else {
-        q.style.display = "block";
-        w.style.display = "none";
-        a.innerHTML = "Multiple";
-    }
-    x++;
-    player1 = 0;
-    player2 = 0;
-    user = 0;
-    ai = 0;
+let one = document.getElementById("one");
+let two = document.getElementById("pScore");
+let three = document.getElementById("aiScore");
+let comp = document.getElementById("comp");
+
+let one1 = document.getElementById("one1");
+let player1 = document.getElementById("player1");
+let player2 = document.getElementById("player2");
+let two1 = document.getElementById("two1");
+
+let p1 = null;
+let p2 = null;
+
+
+function menu() {
+    single = false;
+    multiple = false;
+    intro = true;
+    Intro.style.display = "block";
+    Single.style.display = "none";
+    Multiple.style.display = "none";
+    Back.style.display = "none";
+    pScore = 0;
+    aiScore = 0;
+    one1.innerHTML = "Rock Paper Scissors";
+    one1.style.color = "white";
+    player1Score = 0;
+    player2Score = 0;
+    player1.innerHTML = player1Score;
+    player2.innerHTML = player2Score;
 }
 
-function check() {
-    let b = document.getElementById("b");
-    b.innerHTML = "Play Again!";
-    let u = document.querySelector('input[name="run"]:checked').value;
-    console.log(u);
+
+
+function check1() {
+    intro = false;
+    Intro.style.display = "none";
+    back = true;
+    Single.style.display = "block";
+    Back.style.display = "block";
+    Single.style.display = "block";
+    one.innerHTML = "Rock Paper Scissors";
+    one.style.color = "black";
+    two.innerHTML = "0";
+    three.innerHTML = "0";
+}
+
+function check2() {
+    intro = false;
+    Intro.style.display = "none";
+    back = true;
+    multiple = true;
+    Multiple.style.display = "block";
+    Back.style.display = "block";
+    Multiple.style.display = "block";
+    one1.innerHTML = "Rock Paper Scissors";
+    player1.innerHTML = "0"
+    player1.innerHTML = "0";
+    two1.innerHTML = "START";
+}
+
+function checking() {
+    let bSingle = document.getElementById("bSingle");
+    bSingle.innerHTML = "Play Again!";
+    let player = document.querySelector('input[name="run"]:checked').value;
+    console.log(player);
     const choises = ["Paper", "Scissors", "Rock"];
-    let a = choises[Math.floor(Math.random() * choises.length)];
-    console.log(a);
+    let ai = choises[Math.floor(Math.random() * choises.length)];
+    console.log(ai);
 
-    if (u == a) {
-        r(0, a);
+    if (player == ai) {
+        r1(0, ai);
     } else if (
-        (u == "Paper" && a == "Scissors") ||
-        (u == "Scissors" && a == "Rock") ||
-        (u == "Rock" && a == "Paper")) {
-        ai++;
-        r(-1, a);
+        (player == "Paper" && ai == "Scissors") ||
+        (player == "Scissors" && ai == "Rock") ||
+        (player == "Rock" && ai == "Paper")) {
+        aiScore++;
+        r1(-1, ai);
     } else {
-        user++;
-        r(1, a);
+        pScore++;
+        r1(1, ai);
     }
 }
 
-function r(s, u) {
-    let t = document.getElementById("one");
-    let y = document.getElementById("pScore");
-    let x = document.getElementById("aiScore");
-    let e = document.getElementById("comp");
+function r1(s, u) {
     if (s == -1) {
-        t.innerHTML = "You Lost!";
-        t.style.color = "red";
+        one.innerHTML = "You Lost!";
+        one.style.color = "red";
     } else if (s == 1) {
-        t.innerHTML = "You Won!";
-        t.style.color = "green";
+        one.innerHTML = "You Won!";
+        one.style.color = "green";
     } else {
-        t.innerHTML = "DRAW!";
-        t.style.color = "white";
+        one.innerHTML = "DRAW!";
+        one.style.color = "white";
     }
-    y.innerHTML = user;
-    x.innerHTML = ai;
-    e.innerHTML = u;
+    two.innerHTML = pScore;
+    three.innerHTML = aiScore;
+    comp.innerHTML = u;
 }
 
-function check_multiple() {
-    let b = document.getElementById("b1");
-    b.innerHTML = "Play Again!";
-    let u = document.querySelector('input[name="run1"]:checked').value;
-    console.log(u);
+document.onkeydown = function(event) {
+    if (multiple) {
 
-    let o = document.querySelector('input[name="run2"]:checked').value;
-    console.log(o);
+        if (two1.innerHTML == "START") {
+            keyPressedChecker(event);
+        } else if (event.key == " ") {
+            one1.innerHTML = "Rock Paper Scissors";
+            one1.style.color = "white";
+            two1.innerHTML = "START";
 
-    if (u == o) {
-        r1(0)
-    } else if (
-        (u == "Paper" && o == "Scissors") ||
-        (u == "Scissors" && o == "Rock") ||
-        (u == "Rock" && o == "Paper")) {
-        player1++;
-        r1(1);
-    } else {
-        player2++;
-        r1(-1);
+        }
     }
 }
 
-function r1(a) {
-    let t = document.getElementById("one1");
-    let y = document.getElementById("player1");
-    let x = document.getElementById("player2");
-    if (a == -1) {
-        t.innerHTML = "Player2 Won!";
-    } else if (a == 1) {
-        t.innerHTML = "Player1 Won!";
-    } else {
-        t.innerHTML = "DRAW!";
+function keyPressedChecker(event) {
+    let key = event.key;
+
+    if (key == 'A' || key == "a") {
+        p1 = "Paper";
+    } else if (key == 'S' || key == "s") {
+        p1 = "Scissors";
+    } else if (key == 'D' || key == "d") {
+        p1 = "Rock";
     }
-    y.innerHTML = player1;
-    x.innerHTML = player2;
+
+    if (key == "ArrowLeft") {
+        p2 = "Paper";
+    } else if (key == "ArrowUp") {
+        p2 = "Scissors";
+    } else if (key == "ArrowRight") {
+        p2 = "Rock";
+    }
+    if ((p1 != null) && (p2 != null)) {
+        checking1(p1, p2);
+        p1 = null;
+        p2 = null;
+    }
+
+
+}
+
+function checking1(playerOne, playerTwo) {
+    if (playerOne == playerTwo) {
+        one1.innerHTML = "DRAW";
+        one1.style.color = "white";
+    } else if (playerOne == "Rock" && playerTwo == "Paper") {
+        one1.innerHTML = "Player 2 Wins!";
+        one1.style.color = "red";
+        player2Score++;
+    } else if (playerOne == "Rock" && playerTwo == "Scissors") {
+        one1.innerHTML = "Player 1 Wins!";
+        one1.style.color = "green";
+        player1Score++;
+    } else if (playerOne == "Paper" && playerTwo == "Rock") {
+        one1.innerHTML = "Player 1 Wins!";
+        one1.style.color = "green";
+        player1Score++;
+    } else if (playerOne == "Paper" && playerTwo == "Scissors") {
+        one1.innerHTML = "Player 2 Wins!";
+        one1.style.color = "red";
+        player2Score++;
+    } else if (playerOne == "Scissors" && playerTwo == "Paper") {
+        one1.innerHTML = "Player 1 Wins!";
+        one1.style.color = "red";
+        player1Score++;
+    } else if (playerOne == "Scissors" && playerTwo == "Rock") {
+        one1.innerHTML = "Player 2 Wins!";
+        one1.style.color = "red";
+        player2Score++;
+    }
+
+    two1.innerHTML = "PRESS \"SPACE\" KEY TO PLAY AGAIN";
+    player1.innerHTML = player1Score;
+    player2.innerHTML = player2Score;
 }

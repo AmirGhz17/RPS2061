@@ -2,11 +2,7 @@ body {
     background-color: #3B2A9F;
 }
 
-#radio {
-    background-color: coral;
-}
-
-#b {
+.button {
     width: 252px;
     height: 64px;
     border: 3px solid #FFFFFF;
@@ -14,20 +10,12 @@ body {
     font-size: 36px;
 }
 
-#b1 {
-    width: 252px;
-    height: 64px;
+#back {
+    width: 152px;
+    /* height: 64px; */
     border: 3px solid #FFFFFF;
-    border-radius: 16px;
-    font-size: 36px;
-}
-
-#b2 {
-    width: 252px;
-    height: 64px;
-    border: 3px solid #FFFFFF;
-    border-radius: 16px;
-    font-size: 36px;
+    border-radius: 20px;
+    font-size: 20px;
 }
 
 #div1 {
